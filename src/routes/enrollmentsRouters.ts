@@ -1,27 +1,18 @@
 import { Router, type Request, type Response } from "express";
-import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
-import {
-  zStudentPostBody,
-  zStudentPutBody,
-  zStudentId,
-} from "../libs/zodValidators.js";
 
 import type { User, CustomRequest, UserPayload, Enrollment } from "../libs/types.js";
 import type { Student, Course } from "../libs/types.js";
 
 // import database
 import { users, reset_users, students, enrollments, reset_enrollments } from "../db/db.js";
-import { check, success } from "zod";
-import { error } from "console";
 
 import { authenticateToken } from "../middlewares/authenMiddleware.js";
 import {checkRoleAdmin} from "../middlewares/checkRoleAdmin.js";
 import { checkAdminOrYou } from "../middlewares/checkAdminOrYou.js";
 import { checkId } from "../middlewares/checkId.js";
 import { checkstudent } from "../middlewares/checkstudent.js";
-import { en } from "zod/v4/locales";
 
 const router = Router();
 
