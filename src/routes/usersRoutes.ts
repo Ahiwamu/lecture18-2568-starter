@@ -74,7 +74,6 @@ router.get("/", authenticateToken, checkRoleAdmin, (req: CustomRequest, res: Res
     //         message: "Unauthorized user"
     //     })
     // }
-
     // return all users
     return res.json({
       success: true,
@@ -115,7 +114,7 @@ router.post("/login", (req: Request, res: Response) => {
             username: user.username,
             studentId: user.studentId,
             role: user.role,
-        }, jwt_secret, {expiresIn: "5m"});
+        }, jwt_secret, {expiresIn: "1h"});
         // 4. send HTTP response with JWT token
         res.status(200).json({
             success: true,
