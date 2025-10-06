@@ -97,18 +97,20 @@ router.post("/login", (req: Request, res: Response) => {
         const user = users.find(
             (u :User) => u.username === username && u.password === password
         );
+
+
         
         // 2. check if user exists (search with username & password in DB)
         if(!user){
             return res.status(401).json({
                 success: false,
-                message: "Invalid username or password!"
+                message: "Username or Password is incorrect"
             })
         }
         // 3. create JWT token (with user info object as payload) using JWT_SECRET_KEY
         //    (optional: save the token as part of User data)
 
-        const jwt_secret = process.env.JWT_SECRET || "forget_secret";
+        const jwt_secret = process.env.JWT_SECRET || "This_is_my_secret";
         const token = jwt.sign({
             //add jwt payload
             username: user.username,
